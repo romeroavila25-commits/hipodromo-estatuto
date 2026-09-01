@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
+
+:root{
+  --track-green:#173a2e;
+  --track-green-dark:#0e2620;
+  --dirt:#7a5230;
+  --dirt-light:#96683f;
+  --gold:#d9a441;
+  --gold-dim:#a67c33;
+  --cream:#f3ecd9;
+  --cream-dim:#c9c2ab;
+  --danger:#c0492f;
+  --success:#5a8f4f;
+  --card-bg:#1e463a;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+
+/* ==========================================================
+   BASE (mobile-first): estas reglas son las que rigen por
+   defecto en celulares y se van ampliando con min-width.
+   ========================================================== */
+body{
+  background:radial-gradient(ellipse at top, var(--track-green) 0%, var(--track-green-dark) 65%);
+  color:var(--cream);
+  font-family:'Inter',-apple-system,sans-serif;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:16px 12px 40px;
+  width:100%;
+}
+h1,h2,.display{font-family:'Bebas Neue','Inter',sans-serif;letter-spacing:0.5px;font-weight:400;}
+#app{width:100%;max-width:100%;display:flex;flex-direction:column;}
+.hero-title{font-size:28px;line-height:1;color:var(--gold);margin:0 0 4px;}
+.hero-sub{font-size:13px;color:var(--cream-dim);margin:0 0 16px;max-width:100%;}
+.card{background:var(--card-bg);border:1px solid #2c5c4c;border-radius:10px;padding:14px 14px;margin-bottom:12px;width:100%;}
+input[type=text]{background:#0f2b23;border:1px solid #2c5c4c;color:var(--cream);padding:11px 13px;border-radius:7px;font-size:15px;font-family:'Inter',sans-serif;width:100%;}
+input[type=text]:focus{outline:2px solid var(--gold);outline-offset:1px;}
+button{background:var(--gold);color:#1c1305;border:none;padding:10px 14px;border-radius:7px;font-size:13.5px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;}
+button:hover:not(:disabled){background:#e6b656;}
+button:disabled{background:#4a4432;color:#8a8368;cursor:not-allowed;}
+button.secondary{background:transparent;border:1px solid var(--gold-dim);color:var(--cream);}
+button.secondary:hover:not(:disabled){background:#2c5c4c;}
+button.opt-btn{display:flex;align-items:center;width:100%;text-align:left;margin-bottom:9px;padding:11px 12px;background:#0f2b23;color:var(--cream);border:1.5px solid #2c5c4c;font-weight:500;font-size:13.5px;}
+button.opt-btn:hover:not(:disabled){border-color:var(--gold-dim);}
+
+/* filas y contenedores en Flexbox, con wrap para que nunca se corten */
+.row{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border-radius:999px;background:#0f2b23;font-size:13px;border:1px solid #2c5c4c;max-width:100%;}
+.chip button{background:none;border:none;color:var(--cream-dim);padding:0 0 0 4px;font-size:14px;}
+.dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;display:inline-block;}
+
+.lane{display:flex;align-items:center;gap:6px;padding:7px 6px;border-radius:8px;width:100%;}
+.lane.turn{background:#26543f;}
+.lane-track{position:relative;flex:1 1 auto;min-width:0;height:28px;background:repeating-linear-gradient(90deg, var(--dirt) 0 24px, var(--dirt-light) 24px 26px);border-radius:6px;border:1px solid #3a2413;}
+.lane-horse{position:absolute;top:50%;font-size:18px;transform:translate(-50%,-50%);transition:left .6s cubic-bezier(.22,1,.36,1);filter:drop-shadow(0 2px 2px rgba(0,0,0,.4));}
+.finish-flag{position:absolute;right:-4px;top:50%;transform:translateY(-50%);font-size:16px;}
+.rail-name{flex:0 1 26%;min-width:0;font-size:10.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.rail-score{flex:0 0 22%;font-size:10px;color:var(--cream-dim);text-align:right;white-space:nowrap;}
+
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%;}
+table.metrics{width:100%;min-width:420px;border-collapse:collapse;font-size:11px;}
+table.metrics th{text-align:left;color:var(--cream-dim);font-weight:600;padding:5px 6px;border-bottom:1px solid #2c5c4c;font-size:9.5px;text-transform:uppercase;letter-spacing:0.4px;white-space:nowrap;}
+table.metrics td{padding:5px 6px;border-bottom:1px solid #1c4436;white-space:nowrap;}
+
+.timer{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--gold);letter-spacing:1px;}
+.timer.low{color:var(--danger);}
+.header-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:6px;width:100%;margin-bottom:12px;}
+
+.roulette-wrap{display:flex;flex-direction:column;align-items:center;gap:14px;padding:8px 0 4px;width:100%;}
+.roulette-inner{position:relative;transform:scale(0.85);transform-origin:top center;}
+.roulette{width:150px;height:150px;border-radius:50%;position:relative;background:conic-gradient(from -90deg,#c0492f 0deg 72deg,#d9a441 72deg 144deg,#5a8f4f 144deg 216deg,#3b6ea5 216deg 288deg,#8b5cf6 288deg 360deg);border:5px solid #e9e2cc;transition:transform 2.4s cubic-bezier(.15,.85,.25,1);box-shadow:0 4px 14px rgba(0,0,0,.4);}
+.roulette-pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:16px solid var(--cream);}
+.roulette-num{position:absolute;color:#0f2b23;font-weight:700;font-size:15px;font-family:'Inter',sans-serif;}
+
+.badge{display:inline-block;padding:3px 9px;border-radius:999px;font-size:11px;font-weight:600;}
+.badge.ok{background:#234a30;color:#9fd4a4;}
+.badge.bad{background:#4a2622;color:#e6a294;}
+.feedback-item{padding:10px 0;border-bottom:1px solid #1c4436;}
+.feedback-item:last-child{border-bottom:none;}
+.progress-note{font-size:12px;color:var(--cream-dim);}
+.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#3a2413;color:var(--cream);padding:9px 16px;border-radius:8px;font-size:12.5px;border:1px solid var(--gold-dim);z-index:50;max-width:90vw;text-align:center;}
+.accent{color:var(--gold);}
+h2{font-size:20px;margin:20px 0 10px;}
+
+/* ==========================================================
+   TABLET — a partir de 600px de ancho
+   ========================================================== */
+@media (min-width: 600px){
+  body{padding:22px 20px 50px;}
+  #app{max-width:640px;}
+  .hero-title{font-size:36px;}
+  .hero-sub{font-size:14.5px;margin-bottom:20px;}
+  .card{padding:18px 20px;margin-bottom:16px;}
+  .timer{font-size:30px;}
+  .lane{gap:10px;padding:8px 10px;}
+  .rail-name{flex-basis:22%;font-size:12px;}
+  .rail-score{flex-basis:16%;font-size:11px;}
+  .lane-track{height:32px;}
+  .lane-horse{font-size:21px;}
+  .finish-flag{font-size:19px;}
+  table.metrics{font-size:12.5px;min-width:0;}
+  table.metrics th{padding:6px 8px;font-size:10.5px;}
+  table.metrics td{padding:7px 8px;}
+  .roulette-inner{transform:scale(1);}
+  button{padding:11px 18px;font-size:14px;}
+  button.opt-btn{padding:12px 14px;font-size:14.5px;}
+  h2{font-size:22px;}
+}
+
+/* ==========================================================
+   ESCRITORIO — a partir de 900px de ancho
+   ========================================================== */
+@media (min-width: 900px){
+  #app{max-width:800px;}
+  .hero-title{font-size:44px;}
+  .hero-sub{font-size:15.5px;}
+  .card{padding:22px 26px;}
+  button.opt-btn{padding:13px 16px;font-size:15px;}
+  .lane-track{height:36px;}
+  .lane-horse{font-size:24px;}
+  h2{font-size:24px;}
+}
